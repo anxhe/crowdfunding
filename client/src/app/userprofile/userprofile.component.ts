@@ -11,7 +11,9 @@ export class UserprofileComponent implements OnInit {
   constructor(public auth:AuthService) {
     this.user = this.auth.getUser();
     this.auth.getLoginEventEmitter()
-        .subscribe( user => this.user=user );
+        .subscribe(
+          user => this.user=user
+        );
   }
 
   ngOnInit() {

@@ -9,33 +9,37 @@ var authRoutes = express.Router();
 
 /* GET home page. */
 authRoutes.post('/signup', (req, res, next) => {
-  const {username, password} = req.body;
+  const {name, email, password} = req.body;
 
-  if (!username || !password)
-    return res.status(400).json({ message: 'Provide username and password' });
+  if (!name || !email || !password ){
+    return res.status(400).json({ message: 'Provide required fields' });
+  }
 
   debug('Find user in DB');
 
-  User.findOne({ username },'_id').exec().then(user =>{
-    if(user)
-      return res.status(400).json({ message: 'The username already exists' });
+  User.findOne({ email: email },'_id').exec().then(user =>{
+    if (user) {
+      return res.status(400).json({ message: 'The user already exists' });
+    }
 
-    const salt     = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
     debug('creating user');
     const theUser = new User({
-      username,
+      name: name,
+      email: email,
       password: hashPass
     });
-    return theUser.save()
-    .then(user =>{
-      req.login(user, (err) => {
-        if (err)
-          return res.status(500).json({ message: 'Something went wrong' });
 
-        res.status(200).json(req.user);
+    return theUser.save()
+      .then(user =>{
+        req.login(user, (err) => {
+          if (err)
+            return res.status(500).json({ message: 'Something went wrong' });
+
+          res.status(200).json(req.user);
+        });
       });
-    })
   })
   .catch(e => {
     console.log(e);
