@@ -16,6 +16,7 @@
     "ejs": "~2.5.6",
     "express": "~4.15.2",
     "express-session": "^1.15.6",
+    "handlebars": "^4.0.11",
     "mongo-connect": "0.0.6",
     "mongoose": "^4.11.13",
     "morgan": "~1.8.1",
