@@ -29,6 +29,8 @@ module.exports = {
       .catch((err) => res.status(404).json(err));
   },
   create: (req, res, next) => {
+
+
     let causeData = {
       _creator: req.user._id,
       name: req.body.name,

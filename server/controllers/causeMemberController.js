@@ -7,8 +7,7 @@ module.exports = {
     User.find({ email: {$in: req.body.members }})
       .then(users => {
         Cause.findByIdAndUpdate(req.params.causeId,
-          {$addToSet: { members: users.map(u => u._id)}},
-          {multi:true})
+          {$addToSet: { members: users.map(u => u._id)}})
          .then(result =>{
            res.status(200).json({result});
          })
