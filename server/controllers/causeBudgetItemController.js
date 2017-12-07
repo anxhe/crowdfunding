@@ -14,7 +14,7 @@ module.exports = {
     const newItem = new Item(itemData);
     newItem.save()
       .then(item => {
-        Cause.findByIdAndUpdate(req.params.causeId ,{$push: { budget: item._id }})
+        Cause.findByIdAndUpdate(req.params.causeId ,{$addToSet: { budget: item._id }})
           .then(result =>{
             res.status(200).json({result});
           })
