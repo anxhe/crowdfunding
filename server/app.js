@@ -8,9 +8,11 @@ const passport   = require('passport');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug')("angularauth:"+path.basename(__filename).split('.')[0]);
-const authRoutes = require('./routes/auth');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const moment = require('moment');
+const index = require('./routes/index');
+//routes
 
 const app = express();
 
@@ -50,11 +52,12 @@ app.use(session({
 }));
 require('./passport/serializers');
 require('./passport/local');
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use('/auth', authRoutes);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
