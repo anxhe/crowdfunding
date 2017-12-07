@@ -7,12 +7,12 @@ module.exports = {
     User.find({ email: {$in: req.body.members }})
       .then(users => {
         Cause.findByIdAndUpdate(req.params.causeId,
-          {$addToSet: { members: users.map(u => u._id)}})
+          { $addToSet: { members: { $each: users } } })
          .then(result =>{
            res.status(200).json({result});
          })
       })
-      .catch((err)=>{
+      .catch((err) => {
         res.status(422).json({ message: err });
       });
   }
