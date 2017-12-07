@@ -11,8 +11,9 @@ const userSchema = new Schema({
       'admin',
       'admincause',
       'user'
-    ]
-  },
+    ],
+    default: 'user'
+  }
 }, {
   timestamps: {
     createdAt: 'created_at',

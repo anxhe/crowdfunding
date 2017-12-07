@@ -1,32 +1,41 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+const moment = require('moment');
 
 const causeSchema = new Schema({
   name: { type: String, required: true },
   objectives: [{ type: String, required: true }],
   videourl: { type: String, required: true },
   description: { type: String, required: true },
+  files: [String],
   deadline: { type: Date, required: true },
   budget: [
     { type: mongoose.Schema.Types.ObjectId, ref: 'Item' }
   ],
+  isValidate: { default: false},
   status: {
     type: String,
     enum: [
       'approved',
-      'rejected'
-    ]
+      'rejected',
+      'pending'
+    ],
+    default: 'pending'
   },
+  _creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   members: [
     { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   ],
   updates:[
     { type: String }
   ]
-}, {
+},{
   timestamps: {
     createdAt: 'created_at',
     updatedAt: 'updated_at'
+  },
+  toJSON: {
+    virtuals: true
   }
 });
 
@@ -37,7 +46,7 @@ causeSchema.virtual('timeRemaining').get(function () {
 });
 
 causeSchema.virtual('inputFormattedDate').get(function(){
-  return moment(this.deadline).format('YYYY-MM-DD');
+  return moment(this.deadline).format('MMMM Do YYYY, h:mm:ss a');
 });
 
 const Cause = mongoose.model('Cause', causeSchema);
