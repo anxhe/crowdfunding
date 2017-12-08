@@ -5,7 +5,6 @@ const paginate = require('express-paginate');
 
 module.exports = {
   index: (req, res, next) => {
-      // .then((result) => res.status(200).json({result}))
     Cause.find().limit(req.query.limit).skip(req.skip)
       .then(causes => {
         Cause.count().then(causesCount => {
@@ -29,7 +28,6 @@ module.exports = {
       .catch((err) => res.status(404).json(err));
   },
   create: (req, res, next) => {
-
 
     let causeData = {
       _creator: req.user._id,
