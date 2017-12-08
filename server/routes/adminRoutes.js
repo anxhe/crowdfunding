@@ -8,7 +8,8 @@ const midle = require('../config/middlewares');
 
 
 adminRoutes.get("/", paginate.middleware(10, 10),midle.isAuthenticated, adminController.index);
-
-
+// adminRoutes.put("/:causeId/aprove", midle.isAuthenticated, adminController.editAproved);//button
+// adminRoutes.put("/:causeId/reject", midle.isAuthenticated, adminController.editRejected);//button
+adminRoutes.put("/:causeId/status", midle.isAuthenticated, adminController.editStatus);
 
 module.exports = adminRoutes;

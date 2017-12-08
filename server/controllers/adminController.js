@@ -17,5 +17,15 @@ module.exports = {
         })
       .catch((err) => res.status(404).json(err));
     })
+  },
+  editStatus: (req, res, next) => {//esto será un boton
+    Cause.findByIdAndUpdate(req.params.causeId, { status: req.body.status }, {new: true})//envio de email
+
+      .then(result => {
+        res.status(200).json({result});
+      })
+      .catch(result => {
+        res.status(422).json({result});
+      })
   }
 }

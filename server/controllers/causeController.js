@@ -3,9 +3,10 @@ const Item = require('../models/Item');
 // const User = require('../models/User.js');
 const paginate = require('express-paginate');
 
+
 module.exports = {
   index: (req, res, next) => {
-    Cause.find().limit(req.query.limit).skip(req.skip)
+    Cause.find({status: 'approved'}).limit(req.query.limit).skip(req.skip)
       .then(causes => {
         Cause.count().then(causesCount => {
           const pageCount = Math.ceil(causesCount/req.query.limit);
@@ -20,9 +21,9 @@ module.exports = {
   },
   show: (req, res, next) => {
     Cause.findById(req.params.id)
-      .then(guide => {
+      .then(cause => {
         res.status(200).json({
-          guide: guide,
+          cause: cause,
         })
       })
       .catch((err) => res.status(404).json(err));
@@ -39,7 +40,7 @@ module.exports = {
       //   return e.path.substring(6,e.path.length);
       // }),
       deadline: Date(req.body.deadline),
-      members: req.body.members
+      members: req.body.members,
     }
     const newCause = new Cause(causeData);
 
@@ -47,4 +48,5 @@ module.exports = {
       .then(cause => res.status(201).json({cause})) // created
       .catch((err) => res.status(422).json(err));   // unprocessable entity
   }
+
 }
