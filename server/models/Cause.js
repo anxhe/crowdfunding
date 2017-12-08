@@ -28,7 +28,8 @@ const causeSchema = new Schema({
   ],
   updates:[
     { type: String }
-  ]
+  ],
+  donations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Donation' }]
 },{
   timestamps: {
     createdAt: 'created_at',
