@@ -1,13 +1,21 @@
 const Cause = require('../models/Cause');
 // const User = require('../models/User')
-// const paginate = require('express-paginate');
+const paginate = require('express-paginate');
 
 
 module.exports = {
   index: (req, res, next) => {
-    console.log('entra')
-    Cause.find()
-      .then(causes => res.status(200).json(causes))
-      .catch(err => res.status(422).json(err));
+    Cause.find().limit(req.query.limit).skip(req.skip)
+      .then(causes => {
+        Cause.count().then(causesCount => {
+          const pageCount = Math.ceil(causesCount/req.query.limit);
+          res.json({
+            causes: causes,
+            pageCount: pageCount,
+            itemCount: causesCount,
+          });
+        })
+      .catch((err) => res.status(404).json(err));
+    })
   }
 }
