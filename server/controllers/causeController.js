@@ -17,7 +17,7 @@ module.exports = {
           });
         })
       .catch((err) => res.status(500).json(err));
-    })
+    });
   },
   show: (req, res, next) => {
     Cause.findById(req.params.id).populate({
@@ -32,7 +32,7 @@ module.exports = {
       .then(cause => {
         res.status(200).json({
           cause: cause,
-        })
+        });
       })
       .catch((err) => res.status(404).json(err));
   },
@@ -49,7 +49,7 @@ module.exports = {
       // }),
       deadline: Date(req.body.deadline),
       members: req.body.members,
-    }
+    };
     const newCause = new Cause(causeData);
 
     newCause.save()
@@ -57,4 +57,4 @@ module.exports = {
       .catch((err) => res.status(422).json(err));   // unprocessable entity
   }
 
-}
+};

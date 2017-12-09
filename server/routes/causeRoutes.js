@@ -10,7 +10,7 @@ const donationCauseController = require("../controllers/donationCauseController"
 const paginate = require('express-paginate');
 const multer  = require('multer');
 const upload = multer({ dest: './public/file/causes/'});
-const midle = require('../config/middlewares')
+const midle = require('../config/middlewares');
 
 
 causeRoutes.get("/", paginate.middleware(10, 10), causeController.index);
