@@ -36,16 +36,16 @@ export class AuthService {
       return Observable.throw(e.json().message);
     }
 
-    signup(username,password) {
+    signup(name, email, password) {
       console.log("entrooo")
-      return this.http.post(`${BASEURL}/signup`, {username,password}, this.options)
+      return this.http.post(`${BASEURL}/signup`, { name, email, password}, this.options)
         .map(res => res.json())
         .map(user => this.emitUserLoginEvent(user))
         .catch(this.handleError);
     }
 
-    login(username,password) {
-      return this.http.post(`${BASEURL}/login`, {username,password}, this.options)
+    login(email, password) {
+      return this.http.post(`${BASEURL}/login`, { email, password}, this.options)
         .map(res => res.json())
         .map(user => this.emitUserLoginEvent(user))
         .catch(this.handleError);

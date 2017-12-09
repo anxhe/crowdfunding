@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SignupformComponent implements OnInit {
   formInfo = {
-    username:"",
+    name:"",
+    email:"",
     password:""
   }
   error: string;
@@ -21,7 +22,7 @@ export class SignupformComponent implements OnInit {
   }
 
   signup(){
-    this.auth.signup(this.formInfo.username, this.formInfo.password)
+    this.auth.signup(this.formInfo.name,this.formInfo.email,this.formInfo.password)
       .subscribe(
         (user) => this.router.navigate(['profile']),
         (err) => this.error = err

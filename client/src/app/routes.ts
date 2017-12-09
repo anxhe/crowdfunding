@@ -4,7 +4,7 @@ import {UserprofileComponent} from './userprofile/userprofile.component';
 import {LoginformComponent} from './loginform/loginform.component';
 import {SignupformComponent} from './signupform/signupform.component';
 
-import {IsLoggedInService} from './services/isLoggedIn.canactivate.service';
+import {IsLoggedInService} from './guard/isLoggedIn.canactivate.service';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },

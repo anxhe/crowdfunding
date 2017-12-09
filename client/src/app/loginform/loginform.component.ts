@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 
 interface LoginForm{
-  username:string;
+  email:string;
   password:string;
 }
 
@@ -15,7 +15,7 @@ interface LoginForm{
 })
 export class LoginformComponent implements OnInit {
   formInfo:LoginForm = {
-    username: "",
+    email: "",
     password: ""
   };
   error: string;
@@ -26,9 +26,9 @@ export class LoginformComponent implements OnInit {
   }
 
   login(){
-    const {username, password} = this.formInfo;
-    if(username != "" && password != ""){
-      this.auth.login(username, password)
+    const {email, password} = this.formInfo;
+    if(email != "" && password != ""){
+      this.auth.login(email, password)
       .subscribe(
         (user) => this.router.navigate(['profile']),
         (err) => this.error = err
