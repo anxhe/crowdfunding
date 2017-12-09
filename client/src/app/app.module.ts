@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginformComponent } from './loginform/loginform.component';
 import { AuthService } from './services/auth.service';
-import { HomeComponent } from './home/home.component';
+import { CauseListComponent } from './causeList/causeList.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { RouterModule } from '@angular/router';
 import { IsLoggedInService } from './guard/isLoggedIn.canactivate.service';
+import { CauseService } from './services/cause.service'
 import {routes} from './routes';
 import { SignupformComponent } from './signupform/signupform.component';
 
@@ -16,7 +17,7 @@ import { SignupformComponent } from './signupform/signupform.component';
   declarations: [
     AppComponent,
     LoginformComponent,
-    HomeComponent,
+    CauseListComponent,
     UserprofileComponent,
     SignupformComponent
   ],
@@ -26,7 +27,7 @@ import { SignupformComponent } from './signupform/signupform.component';
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, IsLoggedInService],
+  providers: [AuthService, IsLoggedInService, CauseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

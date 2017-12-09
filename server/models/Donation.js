@@ -8,4 +8,4 @@ const donationSchema = new Schema({
 });
 
 const Donation = mongoose.model('Donation', donationSchema);
-module.exports = Donation;
+module.exports = { Donation, donationSchema };

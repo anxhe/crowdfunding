@@ -1,5 +1,5 @@
 const Cause = require('../models/Cause');
-const Item = require('../models/Item');
+const {Item} = require('../models/Item');
 const User = require('../models/User');
 const paginate = require('express-paginate');
 

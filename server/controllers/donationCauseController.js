@@ -1,5 +1,5 @@
 const Cause = require('../models/Cause');
-const Donation = require('../models/Donation');
+const { Donation } = require('../models/Donation');
 
 module.exports = {
 

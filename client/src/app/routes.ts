@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import {HomeComponent} from './home/home.component';
+import {CauseListComponent} from './causeList/causeList.component';
 import {UserprofileComponent} from './userprofile/userprofile.component';
 import {LoginformComponent} from './loginform/loginform.component';
 import {SignupformComponent} from './signupform/signupform.component';
@@ -7,7 +7,7 @@ import {SignupformComponent} from './signupform/signupform.component';
 import {IsLoggedInService} from './guard/isLoggedIn.canactivate.service';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', component: CauseListComponent },
     { path: 'user',  component: UserprofileComponent,canActivate: [ IsLoggedInService ]  },
     { path: 'login',  component: LoginformComponent,  },
     { path: 'signup',  component: SignupformComponent, },
