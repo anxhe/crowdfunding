@@ -6,7 +6,8 @@ module.exports = {
   create: (req, res, next) => {
     let donationData = {
       amount: req.body.amount,
-      isPrivate: req.body.isPrivate
+      isPrivate: req.body.isPrivate,
+      _user: req.user
     }
     const newDonation = new Donation(donationData);
     newDonation.save()

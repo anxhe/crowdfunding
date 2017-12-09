@@ -1,6 +1,6 @@
 const Cause = require('../models/Cause');
 const Item = require('../models/Item');
-// const User = require('../models/User.js');
+const User = require('../models/User');
 const paginate = require('express-paginate');
 
 
@@ -20,7 +20,15 @@ module.exports = {
     })
   },
   show: (req, res, next) => {
-    Cause.findById(req.params.id)
+    Cause.findById(req.params.id).populate({
+        path: 'donations',
+        match: { isPrivate: false },
+        select: '_id amount',
+        populate: {
+          path: '_user',
+          select: 'name _id'
+        }
+      })
       .then(cause => {
         res.status(200).json({
           cause: cause,
