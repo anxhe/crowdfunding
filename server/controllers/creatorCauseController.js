@@ -11,11 +11,14 @@ module.exports = {
       .catch(err => res.status(500).json(err));
   },
   show: (req, res, next) => {
-    Cause.findById(req.params.causeId)
+    Cause.findOne({
+      _id: req.params.causeId,
+      $or:[{_creator: req.user._id}, {members: req.user._id }]}
+    )
       .then(cause => res.status(200).json(cause))
       .catch(err => res.status(404).json(err));
   },
-  update: (req, res, next) => {
+  createMembers: (req, res, next) => { //PENDDING==> middlewares CHECK-ACESS (Solo el creador puede añadir miembros a la causa)
     User.find({ email: {$in: req.body.members }})
       .then(users => {
         User.update({ _id: { $in: users.map(u => u._id)} }, { $set: { role: 'creatorcause' }}, {multi: true}).exec();
@@ -29,7 +32,7 @@ module.exports = {
         res.status(422).json({ message: err });
       });
   },
-  createBudgetItem: (req, res, next) => {
+  createBudgetItem: (req, res, next) => {//PENDDING==> middlewares CHECK-ACESS (Solo el creador puede añadir miembros a la causa)
     let itemData = {
       concept: req.body.concept,
       quantity: req.body.quantity,

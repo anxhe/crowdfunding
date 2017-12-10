@@ -6,7 +6,7 @@ const midle = require('../config/middlewares');
 
 routes.get("/", midle.isAuthenticated, midle.hasRole('creatorcause'), creatorCauseController.index);
 routes.get('/:causeId', midle.isAuthenticated, midle.hasRole('creatorcause'), creatorCauseController.show);
-routes.put("/:causeId/members", midle.isAuthenticated, midle.hasRole('creatorcause'), creatorCauseController.update);
+routes.put("/:causeId/members", midle.isAuthenticated, midle.hasRole('creatorcause'), creatorCauseController.createMembers);
 routes.post("/:causeId/budget_item", midle.isAuthenticated, midle.hasRole('creatorcause'), creatorCauseController.createBudgetItem);
 
 
