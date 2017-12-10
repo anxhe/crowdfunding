@@ -3,7 +3,7 @@ const Schema   = mongoose.Schema;
 const moment = require('moment');
 const {itemSchema} = require('./Item');
 const {donationSchema} = require('./Donation');
-// { type: mongoose.Schema.Types.ObjectId, ref: 'Item' }
+const User = require('./User');
 
 const causeSchema = new Schema({
   name: { type: String, required: true },
@@ -39,6 +39,10 @@ const causeSchema = new Schema({
   toJSON: {
     virtuals: true
   }
+});
+
+causeSchema.post('save', (cause) => {
+  User.findByIdAndUpdate(cause._creator , { $set: { role: 'creatorcause' }}).exec();
 });
 
 causeSchema.virtual('timeRemaining').get(function () {
