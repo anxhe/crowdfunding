@@ -12,6 +12,11 @@ import { IsLoggedInService } from './guard/isLoggedIn.canactivate.service';
 import { CauseService } from './services/cause.service'
 import {routes} from './routes';
 import { SignupformComponent } from './signupform/signupform.component';
+import { CauseDetailsComponent } from './cause-details/cause-details.component';
+import { NewCauseComponent } from './new-cause/new-cause.component';
+import { EditCauseComponent } from './edit-cause/edit-cause.component';
+import { Select2Module } from 'ng2-select2';
+
 
 @NgModule({
   declarations: [
@@ -19,12 +24,16 @@ import { SignupformComponent } from './signupform/signupform.component';
     LoginformComponent,
     CauseListComponent,
     UserprofileComponent,
-    SignupformComponent
+    SignupformComponent,
+    CauseDetailsComponent,
+    NewCauseComponent,
+    EditCauseComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    Select2Module,
     RouterModule.forRoot(routes)
   ],
   providers: [AuthService, IsLoggedInService, CauseService],

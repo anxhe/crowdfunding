@@ -1,0 +1,29 @@
+<div class="container">
+  <section class="row">
+    <form class="col-md-6">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="cause.name" placeholder="" required>
+      </div>
+      <div class="form-group">
+        <label for="objectives">Objectives:</label><button type="button" name="button" (click)="addObjectives()"></button>
+        <input type="text" class="form-control" name="objectives[]" [(ngModel)]="newObjective" placeholder="" required>
+      </div>
+      <div class="form-group">
+        <label for="objectives">Description:</label>
+        <textarea class="form-control" name="description" [(ngModel)]="cause.description" placeholder="" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="videourl">Videourl: </label>
+        <input type="url" class="form-control" name="videourl" [(ngModel)]="cause.videourl" placeholder="" required>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="deadline">Deadline: </label>
+          <input type="date" class="form-control" name="deadline" [(ngModel)]="cause.deadline" placeholder="" required>
+        </div>
+      </div>
+      <button class="btn btn-default col-md-offset-4 col-md-4" (click)="newCause(cause)" >Submit</button>
+    </form>
+  </section>
+</div>

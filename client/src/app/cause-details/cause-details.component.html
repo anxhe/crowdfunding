@@ -1,0 +1,44 @@
+<div *ngIf="cause" >
+  <div  class="page-header">
+    <h2>{{cause.name}}</h2>
+    <a [routerLink]="['/causes', cause._id, 'edit']">Edit</a>
+  </div>
+  <div class="row">
+    <section  class="col-md-12 col-xs-12">
+      <div class="col-md-6 col-md-offset-1 col-xs-12">
+        <div class="embed-responsive embed-responsive-16by9">
+          <!-- <iframe class="embed-responsive-item " src="{{ cause.videourl }}" ></iframe> -->
+        </div>
+      </div>
+      <div class="col-md-4 col-md-offset-1 col-xs-12">
+        <ul>
+          <li>
+            <div>
+              <span class="glyphicon glyphicon-time"></span>
+                Time remaining: {{cause.timeRemaining}}
+            </div>
+          </li>
+          <li>Total budget: {{cause.totalBudget}}</li>
+          <li>Total Donation: {{cause.percentageDonation}}%</li>
+        </ul>
+      </div>
+    </section>
+    <div class="row">
+      <section  class="col-md-6 col-md-offset-1 col-xs-12">
+        <p>{{cause.description}}</p>
+      </section>
+    </div>
+    <div class="row">
+      <section  class="col-md-6 col-md-offset-1 col-xs-12">
+        <ol>
+          <li *ngFor="let obj of cause.objectives">{{obj}}</li>
+        </ol>
+      </section>
+    </div>
+    <div class="row">
+      <div *ngFor="let member of cause.members">
+        <span>{{ member }}</span>
+      </div>
+    </div>
+  </div>
+</div>

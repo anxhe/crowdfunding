@@ -19,9 +19,10 @@ const causeSchema = new Schema({
     enum: [
       'approved',
       'rejected',
-      'pending'
+      'pending',
+      'initial'
     ],
-    default: 'pending'
+    default: 'initial'
   },
   _creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   members: [
