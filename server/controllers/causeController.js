@@ -29,6 +29,8 @@ module.exports = {
           select: 'name _id'
         }
       })
+      .populate('_creator', 'name')
+      .populate('members', 'name')
       .then(cause => {
         res.status(200).json({
           cause: cause,
