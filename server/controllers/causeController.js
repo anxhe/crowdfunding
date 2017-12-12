@@ -19,14 +19,14 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
     });
   },
-  show: (req, res, next) => {
+  show: (req, res, next) => {// Muestra las causas propias de cada usuario
     Cause.findById(req.params.id).populate({
         path: 'donations',
         match: { isPrivate: false },
         select: '_id amount',
         populate: {
           path: '_user',
-          select: 'name _id'
+          select: 'name _id role'
         }
       })
       .populate('_creator', 'name')

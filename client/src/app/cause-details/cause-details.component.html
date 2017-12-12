@@ -2,6 +2,7 @@
   <div  class="page-header">
     <h2>{{cause.name}}</h2>
     <a [routerLink]="['/causes', cause._id, 'edit']">Edit</a>
+    <a [routerLink]="['/causes']">Back</a>
   </div>
   <div class="row">
     <section  class="col-md-12 col-xs-12">
@@ -37,7 +38,7 @@
     </div>
     <div class="row">
       <div *ngFor="let member of cause.members">
-        <span>{{ member }}</span>
+        <span>{{ member.name }}</span>
       </div>
     </div>
   </div>

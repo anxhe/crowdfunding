@@ -1,6 +1,7 @@
 const Cause = require('../models/Cause');
 const User = require('../models/User');
 const { Item } = require('../models/Item');
+const mongoose = require('mongoose');
 
 module.exports = {
 
@@ -26,7 +27,7 @@ module.exports = {
 
   createMembers: (req, res, next) => { //PENDDING==> middlewares CHECK-ACESS (Solo el creador puede añadir miembros a la causa)
     User.find({ email: {$in: req.body.members }})
-        .then(users => {
+        .then(users => {// cambiar el rol a creator causa para aquellos que pertenezcan a la causa.
           User.update({ _id: { $in: users.map(u => u._id)} }, { $set: { role: 'creatorcause' }}, {multi: true}).exec();
           Cause.findByIdAndUpdate(req.params.causeId,
             { $addToSet: { members: { $each: users } } }, { new: true })
@@ -51,13 +52,25 @@ module.exports = {
     const newItem = new Item(itemData);
     newItem.save()
       .then(item => {
-        Cause.findByIdAndUpdate(req.params.causeId ,{$push: { budget: item }})
-          .then(result =>{
-            res.status(200).json({result});
+        Cause.findByIdAndUpdate(req.params.causeId ,{$push: { budget: item }}, { new: true })
+          .then(cause =>{
+            res.status(200).json({cause});
           });
       })
       .catch((err)=>{
         res.status(422).json({ message: err });
+      });
+  },
+
+  deleteItem: (req, res, next) => {
+    Cause.findByIdAndUpdate(req.params.causeId ,{ $pull: { budget: { _id: req.params.itemId }}})
+      .then(cause =>{
+        console.log('cause?', cause);
+        res.status(204).json(cause);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err);
       });
   }
 };

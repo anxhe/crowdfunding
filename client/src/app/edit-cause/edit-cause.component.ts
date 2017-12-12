@@ -47,10 +47,6 @@ export class EditCauseComponent implements OnInit {
      this.members = data.value;
    }
 
-  addBudget(){
-
-  }
-
   ngOnInit() {
 
   }

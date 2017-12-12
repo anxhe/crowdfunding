@@ -43,4 +43,15 @@ export class CauseService {
       .map(res => res.json());
   }
 
+  addBudget(causeId, item) {
+   return this.http.post(`${API}/creator/causes/${causeId}/budget_item`, item , this.options)
+      .map(res => res.json());
+  }
+
+  deleteItem(causeId, item) {
+    return this.http.delete(`${API}/creator/causes/${causeId}/budget_item/${item._id}` , this.options)
+       .map(res => res.json());
+
+  }
+
 }
