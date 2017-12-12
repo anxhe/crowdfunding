@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CauseService } from '../services/cause.service'
 import { Select2OptionData } from 'ng2-select2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+
 
 
 @Component({
@@ -26,7 +27,9 @@ export class EditCauseComponent implements OnInit {
   public cause: any = {};
   public members:Array<string> = [];
 
-  constructor(private route:ActivatedRoute, private causeService:CauseService) {
+  constructor(private route:ActivatedRoute,
+              private router:Router,
+              private causeService:CauseService) {
     this.route.params.subscribe(params => {
       this.causeService.getCreatorCause(params['id']).subscribe(data => {
         this.cause = data.cause
@@ -45,6 +48,12 @@ export class EditCauseComponent implements OnInit {
 
   added(data: {value: string[]}) {
      this.members = data.value;
+   }
+
+   submit(){
+     this.causeService.updateCauseStatus(this.cause._id, "pending").subscribe(status => {
+       this.router.navigate([`causes/${this.cause._id}`]);
+     });
    }
 
   ngOnInit() {

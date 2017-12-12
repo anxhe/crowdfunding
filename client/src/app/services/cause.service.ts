@@ -54,4 +54,19 @@ export class CauseService {
 
   }
 
+  updateCauseStatus(causeId, status) {
+    return this.http.put(`${API}/creator/causes/${causeId}/status`, {status}, this.options)
+       .map(res => res.json());
+  }
+
+  getCauseListAdmin():Observable<any>{
+    return this.http.get(`${API}/admin/causes`)
+      .map(res => res.json());
+  }
+
+  getCauseListCreator():Observable<any>{
+    return this.http.get(`${API}//creator/causes`)
+      .map(res => res.json());
+  }
+
 }
