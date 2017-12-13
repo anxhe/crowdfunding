@@ -9,7 +9,7 @@ const BASEURL = environment.BASEURL + "/auth";
 @Injectable()
 export class AuthService {
 
-  private user:object;
+  public user:any;
   private userLoginEvent:EventEmitter<any> = new EventEmitter<any>();
   private options = {withCredentials:true};
 
@@ -21,7 +21,7 @@ export class AuthService {
       return this.userLoginEvent;
     }
 
-    public getUser(){
+    public getUser() {
       return this.user;
     }
 

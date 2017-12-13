@@ -17,6 +17,8 @@ import { NewCauseComponent } from './new-cause/new-cause.component';
 import { EditCauseComponent } from './edit-cause/edit-cause.component';
 import { Select2Module } from 'ng2-select2';
 import { TableComponent } from './table/table.component';
+import { ListComponent } from './list/list.component';
+import { CauseDetailsCreatorComponent } from './cause-details-creator/cause-details-creator.component';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { TableComponent } from './table/table.component';
     NewCauseComponent,
     EditCauseComponent,
     TableComponent,
+    ListComponent,
+    CauseDetailsCreatorComponent,
   ],
   imports: [
     BrowserModule,

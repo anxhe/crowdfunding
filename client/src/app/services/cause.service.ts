@@ -59,13 +59,15 @@ export class CauseService {
        .map(res => res.json());
   }
 
+///PENDING ==> Cambiar esto al servicio del admin
+
   getCauseListAdmin():Observable<any>{
-    return this.http.get(`${API}/admin/causes`)
+    return this.http.get(`${API}/admin/causes`, this.options)
       .map(res => res.json());
   }
 
   getCauseListCreator():Observable<any>{
-    return this.http.get(`${API}//creator/causes`)
+    return this.http.get(`${API}/creator/causes`, this.options)
       .map(res => res.json());
   }
 

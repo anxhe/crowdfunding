@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CauseService } from '../services/cause.service'
+import { CauseService } from '../services/cause.service';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-CauseList',
@@ -9,9 +11,10 @@ import { CauseService } from '../services/cause.service'
 
 export class CauseListComponent implements OnInit {
 
-  causeList:Array<any> = []
+  causeList:Array<any> = [];
+  user: Object;
 
-  constructor(public cause: CauseService ) {
+  constructor(public cause: CauseService, public auth: AuthService) {
       this.cause.getCauseList().subscribe(data => {
         this.causeList = data.causes;
       })
