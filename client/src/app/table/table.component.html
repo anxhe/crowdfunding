@@ -1,0 +1,42 @@
+<div class="container">
+  <table class="table table-striped table-bordered">
+      <thead>
+          <tr>
+              <th>Concept</th>
+              <th>quantity</th>
+              <th>Cost</th>
+              <th>Add</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let field of budget; let i = index">
+              <td>
+                  <input [(ngModel)]="field.concept" class="form-control" type="text" name="{{field.concept}}" />
+              </td>
+              <td>
+                  <input [(ngModel)]="field.quantity" class="form-control" type="text" name="{{field.quantity}}" />
+              </td>
+              <td>
+                  <input [(ngModel)]="field.cost" class="form-control" type="text" name="{{field.cost}}" />
+              </td>
+              <td>
+                  <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <input class="form-control" type="text" id="newItemCode" [(ngModel)]="newItem.concept" name="concept" />
+              </td>
+              <td>
+                  <input class="form-control" type="text" id="newItemName" [(ngModel)]="newItem.quantity" name="quantity" />
+              </td>
+              <td>
+                  <input class="form-control" type="text" id="newItemPrice" [(ngModel)]="newItem.cost" name="cost" />
+              </td>
+              <td>
+                  <button class="btn btn-default" type="button" (click)="addBudget()">Add</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
