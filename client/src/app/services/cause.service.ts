@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 
-const BASEURL = environment.BASEURL;
+const BASEURL = environment.BASEURL + '/api';
 
 @Injectable()
 export class CauseService {

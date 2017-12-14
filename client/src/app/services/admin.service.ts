@@ -7,11 +7,10 @@ import 'rxjs/add/operator/catch';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 
-const BASEURL = environment.BASEURL;
+const BASEURL = environment.BASEURL + '/api';
 
 @Injectable()
 export class AdminService {
-
 
   private headers = new Headers({'Content-Type' : 'application/json'});
   private options = new RequestOptions({ headers: this.headers,  withCredentials:true });

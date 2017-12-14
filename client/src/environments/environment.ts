@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  BASEURL: 'https://fightxchange.herokuapp.com'
+  BASEURL: 'http://localhost:3000'
 };

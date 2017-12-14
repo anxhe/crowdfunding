@@ -22,6 +22,7 @@ require('./config/database');
 var whitelist = [
     'http://localhost:4200',
 ];
+
 var corsOptions = {
     origin: function(origin, callback){
         var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -45,20 +46,24 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'angular auth passport secret shh',
+  secret: process.env.PASSPORT_SECRET,
   resave: true,
   saveUninitialized: true,
-  cookie : { httpOnly: true, maxAge: 60*60*24*365 },
+  cookie: { httpOnly: true, maxAge: 60 * 60 * 24 * 365 },
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
+
 require('./passport/serializers');
 require('./passport/local');
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/api', index);
 
-app.use('/', index);
+app.use(function(req, res) {
+  res.sendfile(__dirname + '/public/index.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
