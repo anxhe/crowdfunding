@@ -20,24 +20,16 @@ module.exports = {
     });
   },
   show: (req, res, next) => {
-    Cause.findById(req.params.id).populate({
-        path: 'donations',
-        match: { isPrivate: false },
-        select: '_id amount',
-        populate: {
-          path: '_user',
-          select: 'name _id role'
-        }
-      })
+    Cause.findById(req.params.id)
       .populate('_creator', 'name')
       .populate('members', 'name')
-      .then(cause => {
-        res.status(200).json({
-          cause: cause,
-        });
-      })
-      .catch((err) => res.status(404).json(err));
+      .populate('donations._user', 'name')
+      .then(
+        cause => res.status(200).json({cause}),
+        error => res.status(404).json({error})
+      );
   },
+
   create: (req, res, next) => {
 
     let causeData = {

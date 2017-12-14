@@ -75,7 +75,7 @@ module.exports = {
   },
 
   submitCause: (req, res, next) => {//esto será un boton
-    console.log(req.body.status);
+
     Cause.findByIdAndUpdate(req.params.causeId, { status: req.body.status }, {new: true})//envio de email
       .then(result => {
         res.status(200).json({result});

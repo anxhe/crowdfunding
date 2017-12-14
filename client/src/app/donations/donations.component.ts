@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CauseService } from '../services/cause.service'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-donations',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DonationsComponent implements OnInit {
 
-  constructor() { }
+  donations:any;
+  user:any;
 
-  ngOnInit() {
+  constructor(public causeservice: CauseService, public route: ActivatedRoute) {
+      route.params.subscribe(params => {
+        this.causeservice.getCauseByID(params['id'])
+          .subscribe(data => {
+            console.log(data.cause.donations[10]._user)
+            this.donations = data.cause.donations;
+          });
+
+      });
   }
+
+  ngOnInit() {}
 
 }
