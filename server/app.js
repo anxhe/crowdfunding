@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const moment = require('moment');
 const index = require('./routes/index');
+const dotenv = require('dotenv');
 //routes
 
 const app = express();
