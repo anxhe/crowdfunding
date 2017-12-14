@@ -1,5 +1,4 @@
 <h1>Causes</h1>
-<p> {{auth.user|json}}</p>
 
 <div *ngIf="auth.user?.role == 'creatorcause'">
   <a [routerLink]="['/causes','creator']">creator</a>

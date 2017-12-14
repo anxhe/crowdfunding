@@ -1,8 +1,9 @@
 <div *ngIf="cause" >
   <div  class="page-header">
     <h2>{{cause.name}}</h2>
-    <a [routerLink]="['/causes', cause._id, 'edit']">Edit</a>
-    <a [routerLink]="['/causes']">Back</a>
+    <div *ngIf="auth.user?.role == 'creatorcause'">
+      <a [routerLink]="['/causes', cause._id, 'edit']">Edit</a>
+    </div>
   </div>
   <div class="row">
     <section  class="col-md-12 col-xs-12">

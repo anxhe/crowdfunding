@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {ActivatedRoute, Router} from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import {CauseService} from '../services/cause.service'
 
 @Component({
@@ -10,12 +11,14 @@ import {CauseService} from '../services/cause.service'
 })
 export class CauseDetailsComponent implements OnInit {
 
-    cause:any;
+  cause:any;
+  user:any;
 
-  constructor(public router:Router, public causeservice :CauseService, public route:ActivatedRoute) {
-        route.params.subscribe(params => {
+  constructor(public auth:AuthService, public router:Router, public causeservice:CauseService, public route:ActivatedRoute) {
+    this.user = this.auth.user;
+      route.params.subscribe(params => {
         this.causeservice.getCauseByID(params['id'])
-        .subscribe(data => this.cause = data.cause);
+          .subscribe(data => this.cause = data.cause);
       })
   }
   ngOnInit() {

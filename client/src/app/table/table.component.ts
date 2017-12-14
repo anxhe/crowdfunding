@@ -28,7 +28,7 @@ export class TableComponent implements OnInit {
 
   deleteFieldValue(index) {
     let item = this.budget.splice(index, 1)[0];
-    console.log(item)
+
     this.CauseService.deleteItem(this.cause._id, item ).subscribe(data => {
       console.log(item)
       // this.cause = data.cause;

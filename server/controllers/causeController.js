@@ -19,7 +19,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
     });
   },
-  show: (req, res, next) => {// Muestra las causas propias de cada usuario
+  show: (req, res, next) => {
     Cause.findById(req.params.id).populate({
         path: 'donations',
         match: { isPrivate: false },

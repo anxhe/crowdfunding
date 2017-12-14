@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CauseService } from '../services/cause.service';
-import { Router } from '@angular/router';
+import { AdminService } from '../services/admin.service';
 
 
 @Component({
@@ -16,19 +16,27 @@ export class ListComponent {
 
   constructor(public auth:AuthService,
               public causeService: CauseService,
-              public router: Router) {
+              public admin: AdminService) {
     this.user = this.auth.user;
 
     if (this.user.role == "creatorcause") {
-      console.log("entra "+ this.user.role );
       this.causeService.getCauseListCreator().subscribe(cause => {
         this.causeList = cause;
-        console.log(cause)
       });
     } else if (this.user.role == "admin") {
-      this.causeService.getCauseListAdmin().subscribe(cause => {
-        this.causeList = cause;
+      this.causeService.getCauseListAdmin().subscribe(data => {
+        this.causeList = data.causes;
       });
     }
+  }
+
+  approve(index){
+    this.admin.updateCauseStatus(this.causeList[index]._id, "approved")
+      .subscribe( data =>this.causeList[index] = data.result )
+  }
+
+  reject(index){
+    this.admin.updateCauseStatus(this.causeList[index]._id, "reject")
+      .subscribe( data =>this.causeList[index] = data.result )
   }
 }

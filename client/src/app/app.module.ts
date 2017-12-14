@@ -9,7 +9,8 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { CauseService } from './services/cause.service'
 import { IsLoggedInService } from './guard/isLoggedIn.canactivate.service';
-import { CreatorService } from './services/creator.service';
+// import { CreatorService } from './services/creator.service';
+import { AdminService } from './services/admin.service';
 
 
 import { AppComponent } from './app.component';
@@ -23,7 +24,6 @@ import { EditCauseComponent } from './edit-cause/edit-cause.component';
 import { Select2Module } from 'ng2-select2';
 import { TableComponent } from './table/table.component';
 import { ListComponent } from './list/list.component';
-import { CauseDetailsCreatorComponent } from './cause-details-creator/cause-details-creator.component';
 
 
 @NgModule({
@@ -37,9 +37,8 @@ import { CauseDetailsCreatorComponent } from './cause-details-creator/cause-deta
     NewCauseComponent,
     EditCauseComponent,
     TableComponent,
-    ListComponent,
-    CauseDetailsCreatorComponent,
-  ],
+    ListComponent
+    ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -47,7 +46,7 @@ import { CauseDetailsCreatorComponent } from './cause-details-creator/cause-deta
     Select2Module,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, IsLoggedInService, CauseService],
+  providers: [AuthService, IsLoggedInService, CauseService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
