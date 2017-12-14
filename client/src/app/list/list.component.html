@@ -5,7 +5,7 @@
               <th class="col-md-2" >Name</th>
               <th class="col-md-8">Objectives</th>
               <th class="col-md-1">Status</th>
-              <th class="col-md-1">Action</th>
+              <th *ngIf="auth.user?.role == 'admin' "> class="col-md-1">Action</th>
           </tr>
       </thead>
       <tbody>
@@ -19,7 +19,7 @@
               <td>
                   {{cause.status}}
               </td>
-              <td>
+              <td *ngIf="auth.user?.role == 'admin' ">
                 <button  class="btn btn-default glyphicon glyphicon-ok"  type="button" (click)="approve(i)"></button>
                 <button  class="btn btn-default glyphicon glyphicon-remove"  type="button" (click)="reject(i)"></button>
               </td>

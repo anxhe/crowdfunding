@@ -23,6 +23,9 @@
         <li>
           <button type="button" [routerLink]="['/causes/new']" class="btn btn-primary navbar-btn"> Create Cause</button>
         </li>
+        <li>
+          <button type="button" [routerLink]="['/causes/donations']" class="btn btn-primary navbar-btn"> Donations </button>
+        </li>
         <li *ngIf="!auth.user">
           <button class="btn btn-primary navbar-btn" (click)="openAuthModal()">
             <span class="glyphicon glyphicon-log-in"></span>

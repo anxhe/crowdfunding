@@ -5,6 +5,7 @@ import {CauseDetailsComponent} from './cause-details/cause-details.component';
 import {NewCauseComponent} from './new-cause/new-cause.component';
 import {EditCauseComponent} from './edit-cause/edit-cause.component';
 import {ListComponent} from './list/list.component';
+import {DonationsComponent} from './donations/donations.component';
 
 import {UserprofileComponent} from './userprofile/userprofile.component';
 import {LoginformComponent} from './loginform/loginform.component';
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: 'causes/new', component: NewCauseComponent, canActivate: [ IsLoggedInService ] },
     { path: 'causes/admin', component: ListComponent },
     { path: 'causes/creator', component: ListComponent },
+    { path: 'causes/donations', component: DonationsComponent },
     { path: 'causes/:id', component: CauseDetailsComponent },
     { path: 'causes/:id/edit', component: EditCauseComponent, canActivate: [ IsLoggedInService ]},
     { path: 'user',  component: UserprofileComponent,canActivate: [ IsLoggedInService ] },

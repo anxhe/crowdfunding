@@ -30,9 +30,8 @@ export class TableComponent implements OnInit {
     let item = this.budget.splice(index, 1)[0];
 
     this.CauseService.deleteItem(this.cause._id, item ).subscribe(data => {
-      console.log(item)
-      // this.cause = data.cause;
-      // this.budget = data.cause.budget;
+      this.cause = data.cause;
+      this.budget = data.cause.budget;
     });
   }
 

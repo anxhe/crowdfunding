@@ -28,6 +28,8 @@ import { EditCauseComponent } from './edit-cause/edit-cause.component';
 import { TableComponent } from './table/table.component';
 import { ListComponent } from './list/list.component';
 import { AuthModalComponent } from './auth-modal/auth-modal.component';
+import { DonationsComponent } from './donations/donations.component';
+import { ListDonationsComponent } from './list-donations/list-donations.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { AuthModalComponent } from './auth-modal/auth-modal.component';
     EditCauseComponent,
     TableComponent,
     ListComponent,
-    AuthModalComponent
+    AuthModalComponent,
+    DonationsComponent,
+    ListDonationsComponent
     ],
   imports: [
     BrowserModule,
