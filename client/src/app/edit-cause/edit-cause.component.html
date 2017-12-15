@@ -1,17 +1,14 @@
 <a [routerLink]="['/causes', cause._id]"></a>
 <button name="button" (click)="submit()">SubmitFinal</button>
+
 <app-cause-details></app-cause-details>
-<div class="container">
-  <div class="row">
-    <form class="form" >
-      <div class="form-group">
-        <label for="members">Members</label>
-        <select2  (valueChanged)="added($event)" name="members" [width]="600" [value]="members" [options]="options"></select2>
-        <button type="button" (click)="addMembers()"></button>
-      </div>
-    </form>
-  </div>
+
+
+<div class="form-group">
+  <select2 (valueChanged)="userAdded($event)" name="members" [value]="newMembers" [options]="options"></select2>
+  <button type="button" (click)="addMembers()" class="btn btn-default">
+    <span class="glyphicon glyphicon-plus"></span>
+  </button>
 </div>
-<div class="container">
-  <app-table></app-table>
-</div>
+
+<app-table [cause]="cause" (onCauseUpdate)="refreshCause($event)"></app-table>

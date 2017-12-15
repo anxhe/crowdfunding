@@ -66,7 +66,7 @@ module.exports = {
     Cause.findByIdAndUpdate(req.params.causeId ,{ $pull: { budget: { _id: req.params.itemId }}})
       .then(cause =>{
         console.log('cause?', cause);
-        res.status(204).json(cause);
+        res.status(200).json(cause);
       })
       .catch(err => {
         console.log(err);

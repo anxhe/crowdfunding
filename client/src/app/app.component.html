@@ -7,24 +7,23 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand"[routerLink]="['causes']">FightingXChange</a>
+      <a class="navbar-brand"[routerLink]="['causes']">
+        <small class="glyphicon glyphicon-globe"></small>
+        Fight <small class="glyphicon glyphicon-remove"></small> Change
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
         <li *ngIf="auth.user?.role == 'creatorcause'">
-          <a [routerLink]="['/causes','creator']">creator</a>
+          <a [routerLink]="['/causes','creator']">My Causes</a>
         </li>
         <li *ngIf="auth.user?.role == 'admin' ">
-          <a [routerLink]="['/causes', 'admin']">admin</a>
+          <a [routerLink]="['/causes', 'admin']">Admin</a>
         </li>
-        <li><a [routerLink]="['/causes']">Causes</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <button type="button" [routerLink]="['/causes/new']" class="btn btn-primary navbar-btn"> Create Cause</button>
-        </li>
-        <li>
-          <button type="button" [routerLink]="['/causes/donations']" class="btn btn-primary navbar-btn"> Donations </button>
         </li>
         <li *ngIf="!auth.user">
           <button class="btn btn-primary navbar-btn" (click)="openAuthModal()">

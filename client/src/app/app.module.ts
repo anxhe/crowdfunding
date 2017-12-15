@@ -12,6 +12,7 @@ import { CauseService } from './services/cause.service'
 import { IsLoggedInService } from './guard/isLoggedIn.canactivate.service';
 // import { CreatorService } from './services/creator.service';
 import { AdminService } from './services/admin.service';
+import { DonationService } from './services/donation.service';
 
 import { EmbedVideo } from 'ngx-embed-video';
 import { Select2Module } from 'ng2-select2';
@@ -30,6 +31,7 @@ import { ListComponent } from './list/list.component';
 import { AuthModalComponent } from './auth-modal/auth-modal.component';
 import { DonationsComponent } from './donations/donations.component';
 import { ListDonationsComponent } from './list-donations/list-donations.component';
+import { DonationModalComponent } from './donation-modal/donation-modal.component';
 
 
 @NgModule({
@@ -46,8 +48,8 @@ import { ListDonationsComponent } from './list-donations/list-donations.componen
     ListComponent,
     AuthModalComponent,
     DonationsComponent,
-    ListDonationsComponent
-    ],
+    ListDonationsComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -60,7 +62,13 @@ import { ListDonationsComponent } from './list-donations/list-donations.componen
   entryComponents: [
     AuthModalComponent
   ],
-  providers: [AuthService, IsLoggedInService, CauseService, AdminService],
+  providers: [
+    AuthService,
+    IsLoggedInService,
+    CauseService,
+    AdminService,
+    DonationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
