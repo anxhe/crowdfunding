@@ -31,8 +31,6 @@ import { ListComponent } from './list/list.component';
 import { AuthModalComponent } from './auth-modal/auth-modal.component';
 import { DonationsComponent } from './donations/donations.component';
 import { ListDonationsComponent } from './list-donations/list-donations.component';
-import { DonationModalComponent } from './donation-modal/donation-modal.component';
-
 
 @NgModule({
   declarations: [
