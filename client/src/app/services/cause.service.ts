@@ -20,8 +20,8 @@ export class CauseService {
 
   constructor(private http: Http) { }
 
-  getCauseList():Observable<any>{
-    return this.http.get(`${BASEURL}/causes`)
+  getCauseList(page: Number):Observable<any>{
+    return this.http.get(`${BASEURL}/causes?page=${page}`)
       .map(res => res.json());
   }
 
