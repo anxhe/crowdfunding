@@ -4,7 +4,7 @@
 <section class="row">
   <div *ngFor="let cause of causeList" class="col-xs-6 col-md-4">
     <div class="thumbnail">
-      <div class="embed-responsive embed-responsive-16by9" [innerHtml]="causeVideo(cause)"></div>
+      <!-- <div class="embed-responsive embed-responsive-16by9" [innerHtml]="causeVideo(cause)"></div> -->
       <div class="caption">
         <h4><a *ngIf="cause" [routerLink]="[cause._id]">{{cause.name}}</a></h4>
         <div>
