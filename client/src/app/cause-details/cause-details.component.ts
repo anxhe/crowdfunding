@@ -43,7 +43,7 @@ export class CauseDetailsComponent implements OnInit {
       token: (token: any) => {
         this.donationService.
           donateToCause(this.cause._id, { amount: amount, isPrivate: false })
-          .subscribe(data => this.cause = data.cause)
+          .subscribe(data => this.cause.donations.push(data.donation))
       }
     });
 

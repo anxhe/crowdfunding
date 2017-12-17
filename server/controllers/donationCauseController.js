@@ -16,7 +16,7 @@ module.exports = {
           { $push: { donations: newDonation }},
           { new: true })
           .then(result => {
-            res.status(201).json({cause: result});
+            res.status(201).json({ donation: newDonation });
           });
       })
       .catch((err) => {

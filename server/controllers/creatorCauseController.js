@@ -42,7 +42,7 @@ module.exports = {
         });
   },
 
-  createBudgetItem: (req, res, next) => { //PENDDING==> middlewares CHECK-ACESS (Solo el creador puede añadir miembros a la causa)
+  createBudgetItem: (req, res, next) => { //PENDDING==> middlewares CHECK-ACESS
     let itemData = {
       concept: req.body.concept,
       quantity: req.body.quantity,
