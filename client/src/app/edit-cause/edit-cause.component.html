@@ -1,7 +1,6 @@
 <button name="button" (click)="submit()">SubmitFinal</button>
 
-<app-cause-details></app-cause-details>
-
+<app-cause-details [cause]="cause"></app-cause-details>
 
 <div class="form-group">
   <select2 (valueChanged)="userAdded($event)" name="members" [value]="newMembers" [options]="options"></select2>
@@ -10,4 +9,5 @@
   </button>
 </div>
 
-<app-table [cause]="cause" (onCauseUpdate)="refreshCause($event)"></app-table>
+<app-table [cause]="cause" (onBudgetUpdate)="refreshCauseTotals($event)">
+</app-table>

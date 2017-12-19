@@ -14,7 +14,9 @@ import { DonationService } from '../services/donation.service';
 
 export class CauseDetailsComponent implements OnInit {
 
-  cause: any;
+  currentUser: any;
+
+  @Input() cause: any;
   video: any;
 
   constructor(public auth:AuthService,
@@ -23,16 +25,34 @@ export class CauseDetailsComponent implements OnInit {
               public route:ActivatedRoute,
               private videoService: EmbedVideoService,
               private donationService: DonationService){
-
       route.params.subscribe(params => {
         this.causeservice.getCauseByID(params['id'])
-          .subscribe( data  => {
+          .subscribe(data  => {
             this.cause = data.cause;
             this.video = this.videoService.embed(data.cause.videourl, { attr: { class: 'embed-responsive-item'}});
-        },);
+            this.currentUser = this.auth.user;
+        });
       })
   }
   ngOnInit() {
+  }
+
+  isCauseEditable() {
+    return this.isUserCreator() || this.isUserMember();
+  }
+
+  isUserCreator() {
+    if (this.currentUser) {
+      return this.cause._creator._id == this.currentUser._id;
+    }
+    return false;
+  }
+
+  isUserMember() {
+    if (this.currentUser) {
+      return this.cause.members.includes(this.currentUser._id);
+    }
+    return false;
   }
 
   openDonationModal(amount: any) {

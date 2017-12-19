@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let field of budget; let i = index">
+    <tr *ngFor="let field of cause.budget; let i = index">
       <td>
         <input [(ngModel)]="field.concept" class="form-control" type="text" name="{{field.concept}}" />
       </td>

@@ -1,7 +1,7 @@
 <div *ngIf="cause" >
   <div  class="page-header">
     <h2>{{ cause.name }}</h2>
-    <div *ngIf="auth.user?.role == 'creatorcause'">
+    <div *ngIf="isCauseEditable()">
       <a [routerLink]="['/causes', cause._id, 'edit']">Edit</a>
     </div>
   </div>

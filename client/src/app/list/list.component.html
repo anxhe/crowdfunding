@@ -11,7 +11,7 @@
       <tbody>
           <tr *ngFor="let cause of causeList; let i = index">
               <td>
-                  {{cause.name}}
+                  <a [routerLink]="['/causes', cause._id ]">{{cause.name}}</a>
               </td>
               <td>
                   {{cause.objectives[0]}}

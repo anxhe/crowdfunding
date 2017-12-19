@@ -25,16 +25,17 @@ module.exports = {
       .catch(err => res.status(404).json(err));
   },
 
-  createMembers: (req, res, next) => { //PENDDING==> middlewares CHECK-ACESS (Solo el creador puede añadir miembros a la causa)
+  createMembers: (req, res, next) => {
     User.find({ email: {$in: req.body.members }})
-        .then(users => {// cambiar el rol a creator causa para aquellos que pertenezcan a la causa.
-          User.update({ _id: { $in: users.map(u => u._id)} }, { $set: { role: 'creatorcause' }}, {multi: true}).exec();
+        .then(users => {
+          User.updateMany({ _id: { $in: users.map(u => u._id)}},
+          { $set: { role: 'creatorcause' }}).exec();
           Cause.findByIdAndUpdate(req.params.causeId,
             { $addToSet: { members: { $each: users } } }, { new: true })
             .populate('_creator')
             .populate('members')
             .then(cause =>{
-             res.status(200).json({cause});
+             res.status(200).json({ members: cause.members });
            });
         })
         .catch((err) => {
@@ -42,7 +43,7 @@ module.exports = {
         });
   },
 
-  createBudgetItem: (req, res, next) => { //PENDDING==> middlewares CHECK-ACESS
+  createBudgetItem: (req, res, next) => {
     let itemData = {
       concept: req.body.concept,
       quantity: req.body.quantity,
@@ -74,7 +75,7 @@ module.exports = {
       });
   },
 
-  submitCause: (req, res, next) => {//esto será un boton
+  submitCause: (req, res, next) => {
 
     Cause.findByIdAndUpdate(req.params.causeId, { status: req.body.status }, {new: true})//envio de email
       .then(result => {

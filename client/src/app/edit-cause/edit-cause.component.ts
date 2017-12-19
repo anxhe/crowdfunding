@@ -25,25 +25,25 @@ export class EditCauseComponent implements OnInit {
   };
 
   public cause: any = {};
-  public members:Array<string> = [];
   public newMembers: Array<string> = [];
-
 
   constructor(private route:ActivatedRoute,
               private router:Router,
               private causeService:CauseService) {
     this.route.params.subscribe(params => {
-      this.causeService.getCreatorCause(params['id']).subscribe(data => {
-        this.cause = data.cause;
-        // this.members = data.cause.members.map(m => m.name);
-      });
+      this.loadCause(params['id']);
+    })
+  }
+
+  loadCause(id) {
+    this.causeService.getCauseByID(id).subscribe(data => {
+      this.cause = data.cause
     })
   }
 
   addMembers() {
     this.causeService.addMembers(this.cause._id, this.newMembers).subscribe(data => {
-      console.log("Cause updated from addMembers:", data.cause);
-      this.cause = data.cause
+      this.cause.members = data.members;
       this.newMembers = [];
     })
   }
@@ -52,8 +52,8 @@ export class EditCauseComponent implements OnInit {
      this.newMembers = data.value;
   }
 
-  refreshCause(cause) {
-    this.cause = cause;
+  refreshCauseTotals(cause) {
+    this.loadCause(cause._id);
   }
 
   submit(){
